@@ -1,0 +1,1248 @@
+# mba-essay
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>小論文 学習シート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:dark;
+  --bg-a:#8f88ff; --bg-b:#4a43c4; --bg-c:#1a1a86; --bg-d:#07073f;
+  --band:#8a80f5; --teal:#3fd4cf; --teal-soft:#5bb8e8;
+  --ink:#ffffff; --ink-2:#d6d4ff; --ink-3:#a9a6e8;
+  --panel:rgba(12,12,78,.55); --panel-2:rgba(255,255,255,.06);
+  --line:rgba(170,165,255,.28);
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+  --num:"Outfit","Zen Kaku Gothic New",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--panel:rgba(10,10,70,.6)}}
+:root[data-theme="dark"]{--panel:rgba(10,10,70,.6)}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;font-family:var(--sans);color:var(--ink);
+  background:#1a1a86 linear-gradient(125deg,var(--bg-a) 0%,var(--bg-b) 28%,var(--bg-c) 58%,var(--bg-d) 100%) fixed;
+  line-height:1.7;font-size:15px;overflow-x:hidden}
+/* 背景装飾：斜めの帯とティールの曲線 */
+.deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.deco i{position:absolute;width:18vmax;height:140vmax;background:linear-gradient(180deg,rgba(138,128,245,.55),rgba(138,128,245,.05));}
+.deco i:nth-child(1){left:38vw;top:-40vmax;transform:rotate(-45deg)}
+.deco i:nth-child(2){left:48vw;top:30vh;transform:rotate(45deg);opacity:.6}
+.deco svg{position:absolute;right:-12vmax;top:-10vh;height:120vh;width:auto}
+.app{position:relative;z-index:1;display:grid;grid-template-columns:232px 1fr;min-height:100vh}
+/* サイドバー */
+nav.side{padding:36px 22px;border-right:1px solid var(--line);background:rgba(8,8,60,.25);backdrop-filter:blur(6px)}
+.brand{font-family:var(--num);font-weight:200;font-size:44px;line-height:1;letter-spacing:.04em}
+.brand small{display:block;font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.08em;color:var(--ink-2);margin-top:10px}
+.brand::after{content:"";display:block;height:2px;background:var(--teal);margin-top:16px;width:100%}
+.tabs{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-direction:column;gap:4px}
+.tabs button{all:unset;cursor:pointer;display:block;width:100%;padding:10px 12px;border-radius:4px;color:var(--ink-2);font-size:15px;border-left:2px solid transparent}
+.tabs button:hover{background:var(--panel-2);color:var(--ink)}
+.tabs button[aria-current="page"]{color:var(--ink);background:rgba(255,255,255,.08);border-left-color:var(--teal)}
+.tabs button:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.sync{margin-top:28px;font-size:12px;color:var(--ink-3)}
+.sync b{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ink-3);margin-right:6px;vertical-align:1px}
+.sync.on b{background:var(--teal)}
+/* メイン */
+main{padding:44px 48px 80px;max-width:1080px;width:100%}
+h1{font-size:28px;font-weight:700;margin:0 0 4px;letter-spacing:.02em}
+h1+.sub{color:var(--ink-2);margin:0 0 28px}
+h2{font-size:17px;font-weight:700;margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid var(--teal);display:inline-block;min-width:40%}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:22px 24px;backdrop-filter:blur(8px);margin-bottom:22px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid2>.panel{margin-bottom:0}
+.row-gap{margin-bottom:22px}
+/* ホームのヒーロー */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;padding:8px 0 34px}
+.ring{width:220px;height:220px;position:relative}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.big{font-family:var(--num);font-weight:200;font-size:84px;line-height:1;letter-spacing:-.01em}
+.big-of{font-family:var(--num);font-weight:300;color:var(--ink-2);font-size:16px;margin-top:6px}
+.hero h1{font-size:32px}
+.hero .rule{height:2px;background:var(--teal);width:min(420px,100%);margin:14px 0 16px}
+.hero p{margin:0;color:var(--ink-2)}
+.stats{display:flex;gap:34px;flex-wrap:wrap;margin-top:20px}
+.stat .n{font-family:var(--num);font-weight:300;font-size:34px;line-height:1.1}
+.stat .l{font-size:12px;color:var(--ink-3)}
+/* テーブル */
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--ink-2);background:rgba(255,255,255,.05);white-space:nowrap}
+td.num{font-family:var(--num);font-weight:300;font-size:16px;white-space:nowrap}
+tr.click{cursor:pointer}
+tr.click:hover td{background:rgba(255,255,255,.04)}
+.bar{height:6px;background:rgba(255,255,255,.12);border-radius:3px;overflow:hidden;min-width:90px}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--teal-soft),var(--teal))}
+/* チェックピル */
+.pill{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2);font-size:13px;user-select:none}
+.pill::before{content:"";width:12px;height:12px;border-radius:3px;border:1.5px solid currentColor}
+.pill[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#0a0a4a;font-weight:700}
+.pill[aria-pressed="true"]::before{background:#0a0a4a;border-color:#0a0a4a;box-shadow:inset 0 0 0 2px var(--teal)}
+.pill:hover{border-color:var(--teal)}
+/* 週間 */
+.weeknav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.weeknav .range{font-family:var(--num);font-weight:300;font-size:20px;margin-right:auto}
+.btn{all:unset;cursor:pointer;padding:8px 16px;border-radius:4px;border:1px solid var(--line);color:var(--ink);font-size:14px;background:rgba(255,255,255,.04)}
+.btn:hover{border-color:var(--teal)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--teal);color:#0a0a4a;border-color:var(--teal);font-weight:700}
+.btn.ghost{border-color:transparent;color:var(--ink-2)}
+.day{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.day:last-child{border-bottom:0}
+.day.today .dlabel{color:var(--teal)}
+.dlabel{font-weight:700}
+.dlabel small{display:block;font-family:var(--num);font-weight:300;color:var(--ink-3);font-size:13px}
+.slots{display:flex;flex-direction:column;gap:8px}
+.slot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.slot .k{font-size:13px;color:var(--ink-3);width:48px}
+/* フォーム */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+.form .full{grid-column:1/-1}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-2)}
+input[type=text],input[type=date],input[type=search],select,textarea{font:inherit;color:var(--ink);background:rgba(5,5,50,.5);border:1px solid var(--line);border-radius:4px;padding:9px 11px;width:100%}
+select option{background:#14146a}
+textarea{min-height:110px;resize:vertical}
+fieldset{border:1px solid var(--line);border-radius:4px;padding:12px 14px;margin:0}
+legend{font-size:13px;color:var(--ink-2);padding:0 6px}
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+/* タイマー */
+.timer .phase{font-size:14px;color:var(--ink-2)}
+.timer .clock{font-family:var(--num);font-weight:200;font-size:64px;line-height:1.1;margin:4px 0 10px}
+.phases{display:flex;gap:3px;margin:12px 0 16px}
+.phases div{height:6px;background:rgba(255,255,255,.12);border-radius:2px;position:relative;overflow:hidden}
+.phases div span{position:absolute;inset:0;width:0;background:var(--teal)}
+.plist{list-style:none;padding:0;margin:14px 0 0;font-size:13px;color:var(--ink-2)}
+.plist li{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--line)}
+.plist li.cur{color:var(--ink);font-weight:700}
+/* ログ詳細 */
+.detail td{background:rgba(255,255,255,.03);color:var(--ink-2);font-size:13px}
+.detail .memo{white-space:pre-wrap;color:var(--ink);font-size:14px;margin:6px 0 10px}
+.tag{display:inline-block;padding:1px 8px;border-radius:3px;border:1px solid var(--line);font-size:12px;color:var(--ink-2);white-space:nowrap}
+.tag.done{border-color:var(--teal);color:var(--teal)}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.filters>*{flex:1 1 180px;width:auto}
+.empty{color:var(--ink-3);padding:18px 0}
+.guide dt{font-weight:700;margin-top:14px}
+.guide dd{margin:4px 0 0;color:var(--ink-2)}
+.lv{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.lv:last-child{border-bottom:0}
+.lv b{color:var(--teal);font-weight:500}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#0d0d55;border:1px solid var(--teal);padding:10px 18px;border-radius:4px;font-size:14px;z-index:10;opacity:0;transition:opacity .2s}
+.toast.show{opacity:1}
+.note{font-size:13px;color:var(--ink-3);margin:6px 0 0}
+.aioff{border:1px dashed var(--line);border-radius:4px;padding:12px 14px;color:var(--ink-2);font-size:14px;margin-bottom:18px}
+.thumbs{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.thumbs figure{margin:0;position:relative;width:96px}
+.thumbs img{width:96px;height:128px;object-fit:cover;border-radius:4px;border:1px solid var(--line);display:block}
+.thumbs figcaption{font-family:var(--num);font-size:12px;color:var(--ink-3);display:flex;justify-content:space-between;align-items:center}
+.thumbs button{all:unset;cursor:pointer;color:var(--ink-2);font-size:12px;text-decoration:underline}
+input[type=number]{font:inherit;color:var(--ink);background:rgba(5,5,50,.5);border:1px solid var(--line);border-radius:4px;padding:7px 9px;width:84px}
+input[type=file]{font:inherit;color:var(--ink-2);font-size:13px}
+.rtable input[type=text],.rtable textarea{padding:7px 9px}
+.rtable textarea{min-height:58px}
+.total{display:flex;align-items:baseline;gap:10px;margin:2px 0 14px}
+.total .big{font-size:64px}
+.total span{font-family:var(--num);color:var(--ink-2)}
+.status{font-size:14px;color:var(--teal);min-height:1.7em;margin-top:8px}
+.ulist{margin:6px 0 0;padding-left:1.2em;color:var(--ink-2)}
+.ulist li{margin:2px 0}
+.subh{font-weight:700;font-size:14px;margin:16px 0 0}
+.scgrid{display:flex;flex-wrap:wrap;gap:10px 18px}
+.scgrid label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ink-2)}
+.cols article{padding:16px 0;border-bottom:1px solid var(--line);max-width:72ch}
+.cols article:last-child{border-bottom:0;padding-bottom:0}
+.cols h3{font-size:16px;margin:0}
+.cols .date{font-family:var(--num);font-size:13px;color:var(--ink-3);margin:2px 0 8px}
+.cols p{margin:0 0 8px;color:var(--ink-2)}
+.cols .link{font-size:13px;color:var(--teal)}
+.cols .think{font-size:14px;color:var(--ink);border-left:2px solid var(--teal);padding-left:10px;margin:8px 0}
+.colarc{border-top:1px solid var(--line);margin-top:8px;padding-top:12px}
+.colarc summary{cursor:pointer;color:var(--ink-2);font-size:14px}
+.colarc .ed{margin-top:12px}
+.colarc .ed>p.edl{font-weight:700;margin:12px 0 0;color:var(--ink)}
+.cols .src{font-size:12px;color:var(--ink-3)}
+.cols a,.pq a{color:var(--ink-2)}
+.pq .meta{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+.pq .qbox{background:rgba(255,255,255,.05);border-left:2px solid var(--teal);padding:12px 14px;white-space:pre-wrap;margin:6px 0 12px}
+.pq .mat{background:rgba(5,5,50,.45);border:1px solid var(--line);border-radius:4px;padding:12px 14px;white-space:pre-wrap;font-size:14px;color:var(--ink-2);margin:6px 0 12px}
+.pq details{border-top:1px solid var(--line);padding:10px 0}
+.pq summary{cursor:pointer;font-weight:700;list-style:none}
+.pq summary::-webkit-details-marker{display:none}
+.pq summary::before{content:"＋";color:var(--teal);margin-right:8px}
+.pq details[open] summary::before{content:"－"}
+.pq details>div{margin-top:10px;color:var(--ink-2)}
+.pq .ans{white-space:pre-wrap;color:var(--ink);line-height:1.9}
+[hidden]{display:none!important}
+@media (max-width:860px){
+  .app{grid-template-columns:1fr}
+  nav.side{padding:18px 16px 0;border-right:0;border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(20,18,110,.85)}
+  .brand{font-size:28px}.brand small{display:inline;margin-left:10px}.brand::after{margin-top:10px}
+  .tabs{flex-direction:row;overflow-x:auto;margin-top:6px;gap:0}
+  .tabs button{white-space:nowrap;border-left:0;border-bottom:2px solid transparent;border-radius:0}
+  .tabs button[aria-current="page"]{border-bottom-color:var(--teal)}
+  .sync{display:none}
+  main{padding:26px 18px 60px}
+  .hero{grid-template-columns:1fr;gap:20px}
+  .ring{width:180px;height:180px}.big{font-size:66px}
+  .grid2,.form{grid-template-columns:1fr}
+  .day{grid-template-columns:1fr;gap:8px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="deco" aria-hidden="true"><i></i><i></i>
+  <svg viewBox="0 0 600 1100" preserveAspectRatio="xMaxYMid meet">
+    <path d="M600 40 C 260 160, 120 420, 140 560 C 160 720, 330 900, 600 1060" fill="none" stroke="#7a72ee" stroke-width="90" opacity=".55"/>
+    <path d="M600 110 C 330 220, 210 440, 225 560 C 240 690, 380 860, 600 980" fill="none" stroke="#8d8cff" stroke-width="40" opacity=".7"/>
+    <path d="M600 170 C 380 260, 270 450, 280 560 C 292 660, 420 810, 600 910" fill="none" stroke="#3fd4cf" stroke-width="46" opacity=".9"/>
+  </svg>
+</div>
+
+<div class="app">
+  <nav class="side" aria-label="ページ">
+    <div class="brand">100<small>小論文 習慣化シート</small></div>
+    <ul class="tabs" role="list">
+      <li><button data-view="home" aria-current="page">ホーム</button></li>
+      <li><button data-view="pred">予想問題</button></li>
+      <li><button data-view="week">週間タスクトラッカー</button></li>
+      <li><button data-view="log">1日ログ</button></li>
+      <li><button data-view="list">ログ一覧</button></li>
+      <li><button data-view="guide">復習と最低ライン</button></li>
+      <li><button data-view="grade">AI採点</button></li>
+      <li><button data-view="rubric">採点観点の設定</button></li>
+    </ul>
+    <div class="sync" id="sync"><b></b><span>このブラウザに保存</span></div>
+  </nav>
+
+  <main>
+    <!-- ホーム -->
+    <section id="v-home">
+      <div class="hero">
+        <div class="ring">
+          <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="6"/>
+            <circle id="ringArc" cx="60" cy="60" r="52" fill="none" stroke="url(#rg)" stroke-width="6" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7" style="transition:stroke-dashoffset .9s ease"/>
+            <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5bb8e8"/><stop offset="1" stop-color="#3fd4cf"/></linearGradient></defs></svg>
+          <div class="c"><div class="big" id="hTotal">0</div><div class="big-of">/ 100 題</div></div>
+        </div>
+        <div>
+          <h1>解いた小論文の累計</h1>
+          <div class="rule"></div>
+          <p id="hLead"></p>
+          <div class="stats">
+            <div class="stat"><div class="n" id="hWeekA">0</div><div class="l">今週の解答 / 10</div></div>
+            <div class="stat"><div class="n" id="hWeekR">0</div><div class="l">今週の復習 / 10</div></div>
+            <div class="stat"><div class="n" id="hHours">0</div><div class="l">累計学習時間（h）</div></div>
+            <div class="stat"><div class="n" id="hLogs">0</div><div class="l">ログ件数</div></div>
+            <div class="stat"><div class="n" id="hAvg">–</div><div class="l">AI採点 直近5回平均（%）</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>目標と日程</h2>
+        <div class="tw"><table>
+          <thead><tr><th>節目</th><th>期日</th><th>累計目標</th><th>残り題数</th><th>残り日数</th><th>必要ペース</th><th>進捗</th></tr></thead>
+          <tbody id="hMile"></tbody>
+        </table></div>
+      </div>
+      <div class="grid2">
+        <div class="panel"><h2>今日のタスク</h2><div id="hToday"></div></div>
+        <div class="panel"><h2>最近のログ</h2><div id="hRecent"></div></div>
+      </div>
+      <div class="panel cols" style="margin-top:22px">
+        <h2>コラム：2026年の関連時事</h2>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 4px">
+          <p class="note" id="colDate" style="margin:0;margin-right:auto"></p>
+          <a class="btn primary" id="colUpd" target="_blank" rel="noopener" style="text-decoration:none">Claudeでコラムを更新</a>
+        </div>
+        <p class="note" style="margin:0 0 6px">ボタンを押すと新しいチャットが開き、更新の依頼文が入力欄に入ります。内容を確認して送信してください。</p>
+        <div id="colBody"></div>
+        <details class="colarc"><summary>過去のコラム</summary><div id="colArc"></div></details>
+      </div>
+    </section>
+
+    <!-- 予想問題 -->
+    <section id="v-pred" hidden>
+      <h1>予想問題</h1>
+      <p class="sub">神戸大MBAの出題傾向から、1日2題の予想問題をClaudeが作成します。解答の作り方・解説・模範解答は、解いてから開いてください。</p>
+      <div class="aioff" id="pOff">予想問題の作成はclaude.aiでこのページを開いたときに使えます。</div>
+      <div class="weeknav">
+        <span class="range" id="pRange"></span>
+        <button class="btn" id="pPrev">前の日</button>
+        <button class="btn" id="pNow">今日</button>
+        <button class="btn" id="pNext">次の日</button>
+      </div>
+      <div class="panel" id="pEmpty">
+        <p style="margin:0 0 12px;color:var(--ink-2)" id="pEmptyText">この日の予想問題はまだありません。</p>
+        <div class="actions">
+          <button class="btn primary ai" id="pGen" type="button">この日の2題を作成</button>
+          <button class="btn ghost" id="pStop" type="button" hidden>中止</button>
+        </div>
+        <div class="status" id="pStatus" role="status"></div>
+      </div>
+      <div id="pItems"></div>
+      <div class="panel" id="pFoot" hidden>
+        <p class="note" style="margin:0 0 10px">問題・解説・関連時事情報はAIが作成したもので、事実や数値に誤りを含む可能性があります。架空データと明記された資料は本問用に作られたものです。</p>
+        <button class="btn ghost ai" id="pRegen" type="button">この日の2題を作り直す</button>
+      </div>
+      <div class="panel">
+        <h2>出題傾向（過去問6題から）</h2>
+        <div class="tw"><table>
+          <thead><tr><th>年度</th><th>テーマ領域</th><th>問題の形式</th><th>資料</th></tr></thead>
+          <tbody>
+            <tr><td>昨年度</td><td>組織・人事（柔軟な働き方）</td><td>How</td><td>新聞記事</td></tr>
+            <tr><td>R7</td><td>ガバナンスと成長性</td><td>Why＋図表の解釈</td><td>相関表</td></tr>
+            <tr><td>R6</td><td>生成AIと企業経営</td><td>意見問題（評価）</td><td>調査レポート</td></tr>
+            <tr><td>R5</td><td>資本コスト経営</td><td>What＋Why</td><td>企業資料・株価</td></tr>
+            <tr><td>年度不明</td><td>コングロマリット・ディスカウント</td><td>What</td><td>なし</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- 週間 -->
+    <section id="v-week" hidden>
+      <h1>週間タスクトラッカー</h1>
+      <p class="sub">月・水・金は各2題、火・木・土・日は各1題。解答のチェック数が累計に加算されます。</p>
+      <div class="weeknav">
+        <span class="range" id="wRange"></span>
+        <button class="btn" id="wPrev">前の週</button>
+        <button class="btn" id="wNow">今週</button>
+        <button class="btn" id="wNext">次の週</button>
+      </div>
+      <div class="panel">
+        <div id="wDays"></div>
+      </div>
+      <div class="panel"><h2>この週の集計</h2>
+        <div class="tw"><table><thead><tr><th>項目</th><th>完了</th><th>目標</th><th>達成率</th></tr></thead><tbody id="wSum"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- 1日ログ -->
+    <section id="v-log" hidden>
+      <h1 id="lTitle">1日ログ</h1>
+      <p class="sub">解いた1題ごとに記録します。保存したログは「ログ一覧」に蓄積されます。</p>
+      <div class="grid2" style="grid-template-columns:1.5fr 1fr">
+        <div class="panel">
+          <h2>記録</h2>
+          <form class="form" id="lForm" onsubmit="return false">
+            <label class="f">日付<input type="date" id="fDate" required></label>
+            <label class="f">ブロック<input type="text" id="fBlock" list="blocks" placeholder="例：朝、1題目"></label>
+            <datalist id="blocks"><option value="朝"><option value="昼休み"><option value="夜"><option value="1題目"><option value="2題目"></datalist>
+            <label class="f">問題の種類<select id="fType"></select></label>
+            <label class="f">達成状況<select id="fStatus"></select></label>
+            <label class="f full">出典・テーマ<input type="text" id="fSource" placeholder="例：神戸大 2023年度 / DXと組織変革"></label>
+            <fieldset class="full"><legend>解答60分の工程</legend><div class="checks" id="fSteps"></div></fieldset>
+            <fieldset class="full"><legend>復習60分の観点</legend><div class="checks" id="fReview"></div></fieldset>
+            <label class="f full">振り返りメモ<textarea id="fMemo" placeholder="設問への答え方、論の弱かった点、次回試すこと"></textarea></label>
+            <div class="actions full">
+              <button class="btn primary" id="fSave" type="button">ログを保存</button>
+              <button class="btn ghost" id="fCancel" type="button" hidden>編集をやめる</button>
+            </div>
+          </form>
+        </div>
+        <div class="panel timer">
+          <h2>解答タイマー</h2>
+          <div class="phase" id="tPhase">設問分解</div>
+          <div class="clock" id="tClock">05:00</div>
+          <div class="phases" id="tBars"></div>
+          <div class="actions">
+            <button class="btn primary" id="tStart">開始</button>
+            <button class="btn" id="tSkip">次の工程へ</button>
+            <button class="btn ghost" id="tReset">リセット</button>
+          </div>
+          <ul class="plist" id="tList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ログ一覧 -->
+    <section id="v-list" hidden>
+      <h1>ログ一覧</h1>
+      <p class="sub">行を選ぶと振り返りメモと工程の記録を表示します。</p>
+      <div class="panel">
+        <div class="filters">
+          <input type="search" id="qText" placeholder="出典・テーマ・メモで検索" aria-label="検索">
+          <select id="qType" aria-label="問題の種類で絞り込み"></select>
+          <select id="qStatus" aria-label="達成状況で絞り込み"></select>
+        </div>
+        <div class="tw"><table>
+          <thead><tr><th>日付</th><th>ブロック</th><th>問題の種類</th><th>出典・テーマ</th><th>達成状況</th></tr></thead>
+          <tbody id="lsBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- 復習と最低ライン -->
+    <section id="v-guide" hidden>
+      <h1>復習と最低ライン</h1>
+      <p class="sub">復習60分で見る5つの観点と、忙しい日でも学習をゼロにしないための基準。</p>
+      <div class="grid2">
+        <div class="panel guide"><h2>復習60分の観点</h2><dl id="gReview"></dl></div>
+        <div class="panel"><h2>解答60分の配分</h2>
+          <div class="tw"><table><thead><tr><th>工程</th><th>時間</th></tr></thead><tbody id="gSteps"></tbody></table></div>
+        </div>
+      </div>
+      <div class="panel row-gap" style="margin-top:22px"><h2>最低ライン</h2>
+        <div class="lv"><b>通常の日</b><span>予定どおりの題数を解答し、同じ題を復習する（1題＝120分）。</span></div>
+        <div class="lv"><b>忙しい日</b><span>1題＋復習だけは行う。</span></div>
+        <div class="lv"><b>さらに難しい日</b><span>設問分解と構成だけでも行う（15分）。ログの達成状況は「設問分解＋構成のみ」で記録する。</span></div>
+      </div>
+    </section>
+
+    <!-- AI採点 -->
+    <section id="v-grade" hidden>
+      <h1>AI採点</h1>
+      <p class="sub">手書き答案の写真を読み取り、登録した観点と採点例の目線でClaudeが採点します。</p>
+      <div class="aioff" id="aiOff">AI採点はclaude.aiでこのページを開いたときに使えます。</div>
+      <div class="panel">
+        <h2>1. 答案を読み取る</h2>
+        <div class="form">
+          <label class="f full">設問文<textarea id="gQ" placeholder="設問をそのまま入力（写真の答案と一緒に採点に使います）"></textarea></label>
+          <label class="f">問題の種類<select id="gType"></select></label>
+          <label class="f">字数制限（任意）<input type="text" id="gLimit" inputmode="numeric" placeholder="例：800"></label>
+          <label class="f full">出典・テーマ<input type="text" id="gSource" placeholder="例：神戸大 2023年度 / DXと組織変革"></label>
+          <label class="f full">答案の写真（複数枚なら1枚目から順に選ぶ）<input type="file" id="gFiles" accept="image/jpeg,image/png,image/webp" multiple capture="environment"></label>
+        </div>
+        <div class="thumbs" id="gThumbs"></div>
+        <div class="actions" style="margin-top:14px">
+          <button class="btn primary ai" id="gRead" type="button">答案を読み取る</button>
+          <button class="btn ghost" id="gStop" type="button" hidden>中止</button>
+        </div>
+        <div class="status" id="gStatus" role="status"></div>
+      </div>
+      <div class="panel">
+        <h2>2. 読み取り結果を確認して採点する</h2>
+        <p class="note" style="margin:0 0 10px">誤読があれば直してから採点してください。写真なしで答案を直接入力しても採点できます。</p>
+        <textarea id="gText" style="min-height:240px" placeholder="ここに答案の文字起こしが入ります"></textarea>
+        <p class="note" id="gCount">0字</p>
+        <div class="actions" style="margin-top:10px">
+          <button class="btn primary ai" id="gGrade" type="button">採点する</button>
+        </div>
+        <p class="note" id="gUsing"></p>
+      </div>
+      <div class="panel" id="gResultPanel" hidden>
+        <h2>採点結果</h2>
+        <div id="gResult"></div>
+        <div class="actions" style="margin-top:16px">
+          <button class="btn" id="gToLog" type="button">1日ログに転記</button>
+          <button class="btn" id="gToEx" type="button">採点例に登録（点数を修正）</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>採点履歴</h2>
+        <div class="tw"><table>
+          <thead><tr><th>日付</th><th>出典・テーマ</th><th>問題の種類</th><th>得点</th></tr></thead>
+          <tbody id="gHist"></tbody>
+        </table></div>
+      </div>
+    </section>
+
+    <!-- 採点観点の設定 -->
+    <section id="v-rubric" hidden>
+      <h1>採点観点の設定</h1>
+      <p class="sub">観点と配点（ルーブリック）と、点数の目線を合わせるための採点例を登録します。採点のたびに両方がClaudeに渡されます。</p>
+      <div class="panel">
+        <h2>ルーブリック</h2>
+        <div class="tw"><table class="rtable">
+          <thead><tr><th style="width:22%">観点</th><th style="width:96px">配点</th><th>基準（高得点の条件）</th><th></th></tr></thead>
+          <tbody id="rBody"></tbody>
+        </table></div>
+        <p class="note" id="rSum"></p>
+        <label class="f" style="margin-top:16px">採点の方針（任意）<textarea id="rPolicy" placeholder="例：神戸大MBAの書類選考を想定。合格水準の答案で7割程度になるよう厳しめに採点する。"></textarea></label>
+        <div class="actions" style="margin-top:12px">
+          <button class="btn" id="rAdd" type="button">観点を追加</button>
+          <button class="btn" id="rReset" type="button">推奨ルーブリックを読み込む</button>
+          <button class="btn primary" id="rSave" type="button">ルーブリックを保存</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h2 id="exTitle">採点例を追加</h2>
+        <div class="form">
+          <label class="f full">設問文<textarea id="exQ"></textarea></label>
+          <label class="f full">答案（テキスト）<textarea id="exA" style="min-height:160px" placeholder="答案を入力するか、下の写真から読み取ります"></textarea></label>
+          <label class="f full">答案の写真から読み取る（任意）<input type="file" id="exFiles" accept="image/jpeg,image/png,image/webp" multiple></label>
+          <div class="full actions"><button class="btn ai" id="exRead" type="button">写真を読み取って答案欄に入れる</button></div>
+          <fieldset class="full"><legend>観点ごとの得点</legend><div class="scgrid" id="exScores"></div></fieldset>
+          <label class="f">採点者<select id="exBy"><option>予備校・添削者</option><option>模範解答</option><option>自己採点</option><option>AI採点を修正</option></select></label>
+          <label class="f" style="justify-content:flex-end"><span>採点に使う</span><button class="pill" type="button" id="exUse" aria-pressed="true">使う</button></label>
+          <label class="f full">講評<textarea id="exComment" placeholder="どこが評価され、どこが減点されたか"></textarea></label>
+          <div class="actions full">
+            <button class="btn primary" id="exSave" type="button">採点例を保存</button>
+            <button class="btn ghost" id="exCancel" type="button" hidden>編集をやめる</button>
+          </div>
+        </div>
+        <div class="status" id="exStatus" role="status"></div>
+      </div>
+      <div class="panel">
+        <h2>登録済みの採点例</h2>
+        <p class="note" style="margin:0 0 10px">「採点に使う」がオンの例のうち、新しい順に5件までを採点時に参照します。</p>
+        <div class="tw"><table>
+          <thead><tr><th>設問</th><th>採点者</th><th>合計</th><th>採点に使う</th><th></th></tr></thead>
+          <tbody id="exBody"></tbody>
+        </table></div>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+"use strict";
+/* ---------- 定数 ---------- */
+const GOAL=100;
+const MILESTONES=[
+  {name:"関学 書類選考",due:"2026-11-22",target:60},
+  {name:"小論文100題（神戸大 書類選考 12/20 の前日）",due:"2026-12-19",target:100}
+];
+const TYPES=["テーマ型（自由論述）","課題文読解型","図表・データ分析型","経営ケース型","研究計画・志望理由型","その他"];
+const STATUSES=["解答＋復習 完了","解答のみ","設問分解＋構成のみ","未達"];
+const STEPS=[["設問分解",5],["構成",10],["執筆",30],["見直し",10],["仕上げ",5]];
+const REVIEW=[
+  ["設問適合","問われたことに正面から答えているか。設問の要求をすべて満たしたか。"],
+  ["論の骨格","主張・理由・根拠・結論の筋が一本につながっているか。"],
+  ["具体性","事例・データ・自分の経験で主張を支えられているか。"],
+  ["表現","一文の長さ、用語の正確さ、冗長な言い回しがないか。"],
+  ["次回の改善点","次の1題で試すことを1つ決めて書き残したか。"]
+];
+const DOW=["日","月","火","水","木","金","土"];
+const LSKEY="essay100:v1";
+
+/* ---------- 日付ユーティリティ ---------- */
+const pad=n=>String(n).padStart(2,"0");
+const ymd=d=>d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+const parse=s=>{const [y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const monday=d=>{const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());const w=(x.getDay()+6)%7;return addDays(x,-w)};
+const slotsOf=d=>[1,3,5].includes(d.getDay())?2:1;
+const md=d=>(d.getMonth()+1)+"/"+d.getDate();
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* ---------- 状態 ---------- */
+const DEFAULT_CRITERIA=[
+  {id:"c1",name:"問いへの的確な応答",points:25,desc:"主題と問題を正確に捉え、設問が求める要素・条件（小問、字数、事例への言及、「日本企業」などの範囲限定）にすべて漏れなく答えている。問題の形式（What／Why／How、意見問題なら評価・賛否・規範）に合った答えを冒頭で明示している。"},
+  {id:"c2",name:"理論・概念の正確さ",points:25,desc:"経営学の理論・概念（例：エージェンシー理論、資本コスト、相関と因果、コングロマリット・ディスカウント）を正しく用い、誤用・混同・不正確な定義がない。"},
+  {id:"c3",name:"主張と根拠",points:25,desc:"主張が明示され、理論・資料・事例・データによる根拠で論証されている。主張と根拠が整合し、HowではWhat（実態）とWhy（原因）を押さえて解決策の妥当性を示している。"},
+  {id:"c4",name:"構成・論理展開",points:10,desc:"結論先行で、段落構成が論証の流れに沿っている。字数制限を守っている。"},
+  {id:"c5",name:"日本語の正確さ",points:15,desc:"誤字脱字、文法の誤り、主語と述語のねじれ、不自然な日本語がない。"}
+];
+const state={checks:{},logs:[],examples:[],grades:[],preds:[],predDate:ymd(new Date()),rubric:{criteria:DEFAULT_CRITERIA,policy:""},rubricDraft:null,
+  weekStart:monday(new Date()),view:"home",editing:null,openLog:null,openGrade:null,editingEx:null,exUse:true,photos:[],current:null};
+let mode="local",db=null,uid=null,trackerRef=null,logsCol=null,rubricRef=null;
+const cols={};
+let sample=null,canImages=false,imgLimits=null;
+
+function loadLocal(){
+  try{const raw=localStorage.getItem(LSKEY);if(raw){const o=JSON.parse(raw);state.checks=o.checks||{};state.logs=o.logs||[];state.examples=o.examples||[];state.grades=o.grades||[];state.preds=o.preds||[];if(o.rubric&&o.rubric.criteria)state.rubric=o.rubric;}}catch(e){}
+}
+function saveLocal(){
+  try{localStorage.setItem(LSKEY,JSON.stringify({checks:state.checks,logs:state.logs,examples:state.examples,grades:state.grades,preds:state.preds,rubric:state.rubric}))}catch(e){}
+}
+function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove("show"),2200)}
+
+/* トラッカー保存：1ドキュメントに対して書き込みは1件ずつ */
+let writing=false,dirty=false;
+async function persistTracker(){
+  saveLocal();
+  if(mode!=="cloud")return;
+  if(writing){dirty=true;return}
+  writing=true;
+  do{dirty=false;
+    try{await trackerRef.set({checks:state.checks,updatedAt:Date.now()})}
+    catch(e){toast("保存できませんでした。通信状況を確認してください");break}
+  }while(dirty);
+  writing=false;
+}
+async function saveItem(col,item){
+  if(mode==="cloud"){
+    try{await cols[col].doc(item.id).set(item)}catch(e){toast("保存できませんでした");return false}
+  }else{
+    const i=state[col].findIndex(l=>l.id===item.id);
+    if(i>=0)state[col][i]=item;else state[col].push(item);
+    saveLocal();
+  }
+  return true;
+}
+async function removeItem(col,id){
+  if(mode==="cloud"){try{await cols[col].doc(id).delete()}catch(e){toast("削除できませんでした");return}}
+  else{state[col]=state[col].filter(l=>l.id!==id);saveLocal()}
+  render();
+}
+const saveLog=l=>saveItem("logs",l),removeLog=id=>removeItem("logs",id);
+const newId=p=>p+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+async function persistRubric(){
+  saveLocal();
+  if(mode!=="cloud")return true;
+  try{await rubricRef.set({criteria:state.rubric.criteria,policy:state.rubric.policy,updatedAt:Date.now()});return true}
+  catch(e){toast("ルーブリックを保存できませんでした");return false}
+}
+
+/* ---------- 集計 ---------- */
+function totals(){
+  let a=0,r=0;
+  for(const k in state.checks){if(state.checks[k].a)a++;if(state.checks[k].r)r++}
+  return {a,r};
+}
+function weekCount(start){
+  let a=0,r=0,t=0;
+  for(let i=0;i<7;i++){const d=addDays(start,i);const n=slotsOf(d);t+=n;
+    for(let s=1;s<=n;s++){const c=state.checks[ymd(d)+"_"+s];if(c&&c.a)a++;if(c&&c.r)r++}}
+  return {a,r,t};
+}
+function sortedLogs(){return [...state.logs].sort((x,y)=>(y.date||"").localeCompare(x.date||"")||(y.createdAt||0)-(x.createdAt||0))}
+
+/* ---------- 描画 ---------- */
+function pillHTML(key,field,label){
+  const on=!!(state.checks[key]&&state.checks[key][field]);
+  return `<button class="pill" type="button" data-key="${key}" data-f="${field}" aria-pressed="${on}">${label}</button>`;
+}
+function slotsHTML(d){
+  const n=slotsOf(d);let h="";
+  for(let s=1;s<=n;s++){const key=ymd(d)+"_"+s;
+    h+=`<div class="slot"><span class="k">${s}題目</span>${pillHTML(key,"a","解答")}${pillHTML(key,"r","復習")}</div>`}
+  return `<div class="slots">${h}</div>`;
+}
+function renderHome(){
+  const {a,r}=totals();
+  document.getElementById("hTotal").textContent=a;
+  document.getElementById("ringArc").style.strokeDashoffset=326.7*(1-Math.min(a,GOAL)/GOAL);
+  const w=weekCount(monday(new Date()));
+  document.getElementById("hWeekA").textContent=w.a;
+  document.getElementById("hWeekR").textContent=w.r;
+  document.getElementById("hHours").textContent=a+r;
+  document.getElementById("hLogs").textContent=state.logs.length;
+  const rg=[...state.grades].sort((x,y)=>(y.createdAt||0)-(x.createdAt||0)).slice(0,5).filter(g=>g.result&&g.result.max);
+  document.getElementById("hAvg").textContent=rg.length?Math.round(rg.reduce((s,g)=>s+g.result.total/g.result.max*100,0)/rg.length):"–";
+  const today=parse(ymd(new Date()));
+  let lead="";
+  const next=MILESTONES.find(m=>parse(m.due)>=today);
+  if(a>=GOAL)lead="100題に到達しました。残りの期間は弱点の型に絞って解き直せます。";
+  else if(next){const days=Math.round((parse(next.due)-today)/864e5);const need=Math.max(0,next.target-a);
+    lead=need===0?`「${next.name}」の目標 ${next.target}題に到達済みです。`:`「${next.name}」まであと${days}日。累計${next.target}題まで残り${need}題です。`}
+  else lead="すべての期日を過ぎました。";
+  document.getElementById("hLead").textContent=lead;
+  document.getElementById("hMile").innerHTML=MILESTONES.map(m=>{
+    const due=parse(m.due);const days=Math.max(0,Math.round((due-today)/864e5));
+    const need=Math.max(0,m.target-a);const pace=days>0?(need/(days/7)):need;
+    const pct=Math.min(100,Math.round(a/m.target*100));
+    return `<tr><td>${esc(m.name)}</td><td class="num">${md(due)}</td><td class="num">${m.target}</td><td class="num">${need}</td><td class="num">${days}</td><td class="num">${need===0?"達成":"週 "+pace.toFixed(1)+" 題"}</td><td><div class="bar"><span style="width:${pct}%"></span></div></td></tr>`}).join("");
+  document.getElementById("hToday").innerHTML=`<p style="margin:0 0 10px;color:var(--ink-2)">${md(today)}（${DOW[today.getDay()]}）の予定：${slotsOf(today)}題</p>`+slotsHTML(today);
+  const rec=sortedLogs().slice(0,4);
+  document.getElementById("hRecent").innerHTML=rec.length?`<div class="tw"><table><tbody>${rec.map(l=>`<tr class="click" data-open="${l.id}"><td class="num">${md(parse(l.date))}</td><td>${esc(l.source||"（テーマ未記入）")}</td><td><span class="tag ${l.status===STATUSES[0]?"done":""}">${esc(l.status)}</span></td></tr>`).join("")}</tbody></table></div>`:`<p class="empty">まだログがありません。1題解いたら「1日ログ」から記録してください。</p>`;
+}
+function renderWeek(){
+  const s=state.weekStart,e=addDays(s,6),todayK=ymd(new Date());
+  document.getElementById("wRange").textContent=`${s.getFullYear()}年 ${md(s)} – ${md(e)}`;
+  let h="";
+  for(let i=0;i<7;i++){const d=addDays(s,i);
+    h+=`<div class="day ${ymd(d)===todayK?"today":""}"><div class="dlabel">${DOW[d.getDay()]}曜日<small>${md(d)}</small></div>${slotsHTML(d)}</div>`}
+  document.getElementById("wDays").innerHTML=h;
+  const w=weekCount(s);
+  const row=(n,v,t)=>`<tr><td>${n}</td><td class="num">${v}</td><td class="num">${t}</td><td><div class="bar"><span style="width:${Math.round(v/t*100)}%"></span></div></td></tr>`;
+  document.getElementById("wSum").innerHTML=row("解答",w.a,w.t)+row("復習",w.r,w.t)+row("学習時間（h）",w.a+w.r,w.t*2);
+}
+function renderList(){
+  const q=document.getElementById("qText").value.trim().toLowerCase();
+  const ft=document.getElementById("qType").value,fs=document.getElementById("qStatus").value;
+  const rows=sortedLogs().filter(l=>(!ft||l.type===ft)&&(!fs||l.status===fs)&&(!q||[l.source,l.memo,l.block].join(" ").toLowerCase().includes(q)));
+  if(!rows.length){document.getElementById("lsBody").innerHTML=`<tr><td colspan="5" class="empty">${state.logs.length?"条件に合うログがありません。":"まだログがありません。"}</td></tr>`;return}
+  document.getElementById("lsBody").innerHTML=rows.map(l=>{
+    const d=parse(l.date);
+    let h=`<tr class="click" data-toggle="${l.id}"><td class="num">${md(d)}（${DOW[d.getDay()]}）</td><td>${esc(l.block)}</td><td>${esc(l.type)}</td><td>${esc(l.source)}</td><td><span class="tag ${l.status===STATUSES[0]?"done":""}">${esc(l.status)}</span></td></tr>`;
+    if(state.openLog===l.id){
+      h+=`<tr class="detail"><td colspan="5">
+        <div>解答の工程：${STEPS.map(s=>`<span class="tag ${(l.steps||[]).includes(s[0])?"done":""}">${s[0]}</span>`).join(" ")}</div>
+        <div style="margin-top:6px">復習の観点：${REVIEW.map(s=>`<span class="tag ${(l.review||[]).includes(s[0])?"done":""}">${s[0]}</span>`).join(" ")}</div>
+        <div class="memo">${esc(l.memo||"（メモなし）")}</div>
+        <div class="actions"><button class="btn" data-edit="${l.id}">編集</button><button class="btn ghost" data-del="${l.id}">削除</button></div>
+      </td></tr>`}
+    return h}).join("");
+}
+function render(){
+  if(state.view==="home")renderHome();
+  if(state.view==="week")renderWeek();
+  if(state.view==="list")renderList();
+  if(state.view==="grade")renderGrade();
+  if(state.view==="rubric")renderRubric();
+  if(state.view==="pred")renderPred();
+}
+function show(view){
+  state.view=view;
+  document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-current",b.dataset.view===view?"page":"false"));
+  ["home","week","log","list","guide","grade","rubric","pred"].forEach(v=>document.getElementById("v-"+v).hidden=v!==view);
+  window.scrollTo(0,0);render();
+}
+
+/* ---------- フォーム ---------- */
+function fillSelect(el,items,blank){el.innerHTML=(blank?`<option value="">${blank}</option>`:"")+items.map(x=>`<option>${esc(x)}</option>`).join("")}
+function chipGroup(el,items,name){el.innerHTML=items.map(x=>`<button class="pill" type="button" data-chip="${name}" data-v="${esc(x[0])}" aria-pressed="false">${esc(x[0])}${x[1]&&typeof x[1]==="number"?" "+x[1]+"分":""}</button>`).join("")}
+function chipValues(name){return [...document.querySelectorAll(`[data-chip="${name}"][aria-pressed="true"]`)].map(b=>b.dataset.v)}
+function setChips(name,vals){document.querySelectorAll(`[data-chip="${name}"]`).forEach(b=>b.setAttribute("aria-pressed",vals.includes(b.dataset.v)))}
+function resetForm(){
+  state.editing=null;
+  document.getElementById("fDate").value=ymd(new Date());
+  ["fBlock","fSource","fMemo"].forEach(id=>document.getElementById(id).value="");
+  document.getElementById("fType").selectedIndex=0;document.getElementById("fStatus").selectedIndex=0;
+  setChips("step",[]);setChips("rev",[]);
+  document.getElementById("lTitle").textContent="1日ログ";
+  document.getElementById("fSave").textContent="ログを保存";
+  document.getElementById("fCancel").hidden=true;
+}
+function editLog(id){
+  const l=state.logs.find(x=>x.id===id);if(!l)return;
+  state.editing=id;
+  document.getElementById("fDate").value=l.date;document.getElementById("fBlock").value=l.block||"";
+  document.getElementById("fType").value=l.type;document.getElementById("fStatus").value=l.status;
+  document.getElementById("fSource").value=l.source||"";document.getElementById("fMemo").value=l.memo||"";
+  setChips("step",l.steps||[]);setChips("rev",l.review||[]);
+  document.getElementById("lTitle").textContent="ログを編集";
+  document.getElementById("fSave").textContent="変更を保存";
+  document.getElementById("fCancel").hidden=false;
+  show("log");
+}
+async function submitLog(){
+  const date=document.getElementById("fDate").value;
+  if(!date){toast("日付を入力してください");return}
+  const old=state.editing?state.logs.find(x=>x.id===state.editing):null;
+  const log={id:state.editing||("l"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)),
+    date,block:document.getElementById("fBlock").value.trim(),type:document.getElementById("fType").value,
+    status:document.getElementById("fStatus").value,source:document.getElementById("fSource").value.trim(),
+    steps:chipValues("step"),review:chipValues("rev"),memo:document.getElementById("fMemo").value,
+    createdAt:old?old.createdAt:Date.now(),updatedAt:Date.now()};
+  const ok=await saveLog(log);
+  if(ok){toast(state.editing?"変更を保存しました":"ログを保存しました");resetForm();render()}
+}
+
+/* ---------- タイマー ---------- */
+const T={i:0,left:STEPS[0][1]*60,running:false,endAt:0,iv:null};
+function tRender(){
+  const m=Math.floor(T.left/60),s=T.left%60;
+  document.getElementById("tClock").textContent=pad(m)+":"+pad(s);
+  document.getElementById("tPhase").textContent=T.i<STEPS.length?`${T.i+1}/5 ${STEPS[T.i][0]}`:"解答60分 完了";
+  document.getElementById("tStart").textContent=T.running?"一時停止":"開始";
+  document.querySelectorAll("#tBars div span").forEach((sp,k)=>{
+    const tot=STEPS[k][1]*60;sp.style.width=(k<T.i?100:k===T.i?((tot-T.left)/tot*100):0)+"%"});
+  document.querySelectorAll("#tList li").forEach((li,k)=>li.classList.toggle("cur",k===T.i));
+}
+function tTick(){
+  T.left=Math.max(0,Math.round((T.endAt-Date.now())/1000));
+  if(T.left===0){markStep(T.i);T.i++;
+    if(T.i>=STEPS.length){tStop();T.left=0;toast("解答60分が終わりました。続けて復習へ")}
+    else{T.left=STEPS[T.i][1]*60;T.endAt=Date.now()+T.left*1000;toast(`次は「${STEPS[T.i][0]}」${STEPS[T.i][1]}分`)}}
+  tRender();
+}
+function markStep(i){const b=document.querySelector(`[data-chip="step"][data-v="${STEPS[i][0]}"]`);if(b)b.setAttribute("aria-pressed","true")}
+function tStop(){T.running=false;clearInterval(T.iv)}
+function tToggle(){
+  if(T.i>=STEPS.length)return;
+  if(T.running){tStop()}else{T.running=true;T.endAt=Date.now()+T.left*1000;T.iv=setInterval(tTick,500)}
+  tRender();
+}
+
+/* ---------- AI採点 ---------- */
+const ERR={not_granted:"Claudeの利用が許可されませんでした。ページを開き直すと再度確認されます。",rate_limited:"混み合っています。少し待ってから再度お試しください。",
+  image_rejected:"画像を読み込めませんでした。JPEG・PNG・WebPの写真を選んでください。",images_unavailable:"この画面では画像を送れません。",
+  invalid_json:"結果を読み取れませんでした。もう一度お試しください。",prompt_too_large:"文章が長すぎます。採点例の数を減らしてください。",
+  cancelled:"中止しました。",refused:"この内容は採点できませんでした。",session_expired:"ログインの有効期限が切れました。ページを開き直してください。"};
+const errMsg=e=>ERR[e&&e.code]||("処理できませんでした（"+((e&&e.code)||"unknown")+"）");
+const charCount=t=>(t||"").replace(/\s/g,"").length;
+function rubricMax(){return state.rubric.criteria.reduce((s,c)=>s+(Number(c.points)||0),0)}
+function usedExamples(){return [...state.examples].filter(x=>x.use).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)).slice(0,5)}
+function exTotal(x){return state.rubric.criteria.reduce((s,c)=>s+(Number((x.scores||{})[c.name])||0),0)}
+
+async function shrink(file){
+  try{
+    const bmp=await createImageBitmap(file);const max=2000;const r=Math.min(1,max/Math.max(bmp.width,bmp.height));
+    const c=document.createElement("canvas");c.width=Math.round(bmp.width*r);c.height=Math.round(bmp.height*r);
+    c.getContext("2d").drawImage(bmp,0,0,c.width,c.height);
+    return await new Promise(res=>c.toBlob(b=>res(b||file),"image/jpeg",.88));
+  }catch(e){return file}
+}
+let ctl=null;
+async function transcribe(files,statusEl){
+  if(!sample||!canImages){toast("この画面では写真を読み取れません");return null}
+  if(!files.length){toast("答案の写真を選んでください");return null}
+  if(imgLimits&&files.length>imgLimits.maxCount){toast("写真は"+imgLimits.maxCount+"枚までです");return null}
+  statusEl.textContent="読み取り中…（数十秒かかることがあります）";
+  ctl=new AbortController();document.getElementById("gStop").hidden=false;
+  try{
+    const imgs=[];for(const f of files)imgs.push(await shrink(f));
+    const prompt=`添付の画像${imgs.length}枚は、手書きの小論文答案です（1枚目から順に続いています）。
+書かれている文章をそのまま文字起こししてください。
+・誤字や不自然な表現も直さず、書かれたとおりに起こす
+・段落の区切りは改行で残す
+・判読できない文字は〔判読不能〕と書く
+・原稿用紙のマス目、印刷された設問文や番号は含めない
+JSONのみで次の形で返してください：{"text":"答案全文"}`;
+    const r=await sample.json(prompt,{images:imgs,signal:ctl.signal});
+    statusEl.textContent="読み取りました。誤読がないか確認してください。";
+    return (r&&typeof r.text==="string")?r.text:"";
+  }catch(e){statusEl.textContent=errMsg(e);return null}
+  finally{document.getElementById("gStop").hidden=true}
+}
+function buildPrompt(q,limit,answer){
+  const cr=state.rubric.criteria,max=rubricMax();
+  let p="あなたは日本のMBA（経営学研究科）入試の小論文を採点する採点者です。以下の採点方針・ルーブリック・採点例の目線に合わせて、採点対象の答案を採点してください。\n\n";
+  if(state.rubric.policy.trim())p+="# 採点方針\n"+state.rubric.policy.trim()+"\n\n";
+  p+=`# ルーブリック（合計${max}点）\n`+cr.map(c=>`- ${c.name}（${c.points}点）：${c.desc}`).join("\n")+"\n\n";
+  const ex=usedExamples();
+  if(ex.length){
+    p+="# 採点例（点数の厳しさ・評価の目線をこれに合わせること）\n";
+    ex.forEach((x,i)=>{
+      p+=`## 例${i+1}（採点者：${x.by}）\n設問：${(x.question||"").slice(0,1500)}\n答案：${(x.answer||"").slice(0,4000)}\n得点：`+
+        cr.map(c=>`${c.name} ${(x.scores||{})[c.name]??"-"}/${c.points}`).join("、")+`（合計 ${exTotal(x)}/${max}）\n講評：${x.comment||"なし"}\n\n`;
+    });
+  }
+  p+=`# 採点の手順（この順で検討してから採点する）
+1. 主題の特定：設問で出題者が提示している目的（何のために問うているか）を特定する。問いの言葉どおりで判断できなければ、問題の所在を示す別の言葉、前後の小問、課題文や提示された意見・事実から判断する。
+2. 問題の特定：主題を満たすために解決すべき疑問・論点を特定し、形式を分類する。What（実態の把握：定義・意味の説明）、Why（因果関係の分析：主張の根拠・事実の原因）、How（解決策の提案）。「意見を述べよ」型の意見問題は、評価（基準を設けて良否・適否を判断）、賛否（賛成・反対の表明と根拠）、規範（どうすべきかの対案提示）のどれかに読み替える。意見問題だから何を書いてもよい、という答案は脱線とみなす。
+3. 答案の照合：答案が特定した問題に正面から答えているか、主題の範囲を外れていないかを確認する。HowやWhyは明示されていなくても、Howの答えにはWhat（どこに課題があるか）とWhy（なぜ生じたか）の裏づけが必要。評価なら基準の明示、賛否なら立場の明示と根拠、規範なら課題の所在と原因の把握を確認する。
+4. 小論文の正解は一つではなく範囲があるため、結論の内容そのものよりも、主張が妥当な範囲にあることを論証で根拠づけられているかで評価する。
+5. 設問が求める要素・条件（小問の数、字数、事例への言及、「日本企業」などの範囲限定）をすべて列挙し、漏れなく答えているかを一つずつ判定する。
+6. 使われている経営学の理論・概念が正しく用いられているか、誤用・混同・不正確な定義がないかを確認する。
+7. 誤字脱字、文法の誤り、不自然な日本語を拾い出す。
+
+`;
+  p+=`# 採点対象\n設問：${q||"（設問文の入力なし。答案から設問を推定して採点）"}\n`;
+  if(limit)p+=`字数制限：${limit}字（答案の字数：${charCount(answer)}字。超過や大幅な不足は表現の観点で考慮）\n`;
+  p+=`答案：\n${answer}\n\n`;
+  p+=`# 出力
+答案は手書きを文字起こしし、本人が読み取り誤りを修正済みです。残っている誤字脱字・不自然な日本語は答案の誤りとして評価してください（〔判読不能〕は減点しない）。理論・概念の誤用は、どこがどう誤っているかを具体的に指摘してください。
+JSONのみで次の形で返してください。scoresはルーブリックの観点をすべて、同じ順番・同じ名前で含めること。
+{"analysis":{"theme":"特定した主題（1文）","problem":"特定した問題（1文）","form":"What／Why／How／意見問題（評価）／意見問題（賛否）／意見問題（規範）のいずれか","fit":"答案がこの主題と問題に合っているかの判定（1〜2文）"},"scores":[{"name":"観点名","score":得点(数値),"max":配点(数値),"comment":"得点の根拠を1〜2文"}],"total":合計(数値),"summary":"総評を2〜3文","strengths":["良い点"],"improvements":["改善点（具体的に）"],"next":"次の1題で試すこと1つ","requirements":[{"item":"設問が求める要素・条件","met":true,"note":"判定の根拠"}],"typos":[{"original":"誤りの箇所","fix":"修正案","reason":"誤字／脱字／不自然な表現／文法など"}]}`;
+  return p;
+}
+async function grade(){
+  if(!sample){toast("AI採点はclaude.aiで開いたときに使えます");return}
+  const answer=document.getElementById("gText").value.trim();
+  if(!answer){toast("答案を読み取るか入力してください");return}
+  const st=document.getElementById("gStatus");
+  const q=document.getElementById("gQ").value.trim(),limit=document.getElementById("gLimit").value.trim();
+  st.textContent="採点中…（30秒〜1分ほどかかります）";document.getElementById("gGrade").disabled=true;
+  ctl=new AbortController();document.getElementById("gStop").hidden=false;
+  try{
+    const r=await sample.json(buildPrompt(q,limit,answer),{signal:ctl.signal,cache:false});
+    if(!r||!Array.isArray(r.scores))throw {code:"invalid_json"};
+    const max=rubricMax();
+    const total=r.scores.reduce((s,x)=>s+(Number(x.score)||0),0);
+    const g={id:newId("g"),date:ymd(new Date()),question:q,limit,type:document.getElementById("gType").value,
+      source:document.getElementById("gSource").value.trim(),answer,
+      result:{scores:r.scores.map(x=>({name:String(x.name||""),score:Number(x.score)||0,max:Number(x.max)||0,comment:String(x.comment||"")})),
+        total,max,analysis:{theme:String((r.analysis||{}).theme||""),problem:String((r.analysis||{}).problem||""),form:String((r.analysis||{}).form||""),fit:String((r.analysis||{}).fit||"")},summary:String(r.summary||""),strengths:(r.strengths||[]).map(String),improvements:(r.improvements||[]).map(String),next:String(r.next||""),requirements:(Array.isArray(r.requirements)?r.requirements:[]).map(x=>({item:String(x.item||""),met:!!x.met,note:String(x.note||"")})),typos:(Array.isArray(r.typos)?r.typos:[]).map(x=>({original:String(x.original||""),fix:String(x.fix||""),reason:String(x.reason||"")}))},
+      createdAt:Date.now()};
+    state.current=g;
+    await saveItem("grades",g);
+    st.textContent="採点しました。結果は採点履歴にも保存されています。";
+    renderGrade();
+    document.getElementById("gResultPanel").scrollIntoView({behavior:"smooth",block:"start"});
+  }catch(e){st.textContent=errMsg(e)}
+  finally{document.getElementById("gGrade").disabled=false;document.getElementById("gStop").hidden=true}
+}
+function resultHTML(g){
+  const r=g.result;
+  const a=r.analysis,rq=r.requirements||[],ty=r.typos||[];
+  const rqh=rq.length?`<p class="subh">設問の要求への対応</p><div class="tw" style="margin-top:6px"><table><thead><tr><th>要素・条件</th><th>判定</th><th>根拠</th></tr></thead><tbody>${rq.map(x=>`<tr><td>${esc(x.item)}</td><td style="white-space:nowrap">${x.met?'<span class="tag done">対応済み</span>':'<span class="tag">漏れ</span>'}</td><td>${esc(x.note)}</td></tr>`).join("")}</tbody></table></div>`:"";
+  const tyh=`<p class="subh">誤字脱字・不自然な日本語</p>`+(ty.length?`<div class="tw" style="margin-top:6px"><table><thead><tr><th>該当箇所</th><th>修正案</th><th>種類</th></tr></thead><tbody>${ty.map(x=>`<tr><td>${esc(x.original)}</td><td>${esc(x.fix)}</td><td>${esc(x.reason)}</td></tr>`).join("")}</tbody></table></div>`:`<p class="note">指摘はありません。</p>`);
+  const an=a&&(a.theme||a.problem)?`<p class="subh" style="margin-top:0">問いの読み取り</p><div class="tw" style="margin:6px 0 18px"><table><tbody>
+    <tr><th>主題</th><td>${esc(a.theme)}</td></tr><tr><th>問題</th><td>${esc(a.problem)}</td></tr>
+    <tr><th>問題の形式</th><td>${esc(a.form)}</td></tr><tr><th>答案との適合</th><td>${esc(a.fit)}</td></tr></tbody></table></div>`:"";
+  return an+`<div class="total"><div class="big">${r.total}</div><span>/ ${r.max} 点（${r.max?Math.round(r.total/r.max*100):0}%）</span></div>
+  <div class="tw"><table><thead><tr><th>観点</th><th>得点</th><th>講評</th></tr></thead><tbody>
+  ${r.scores.map(s=>`<tr><td>${esc(s.name)}</td><td class="num">${s.score} / ${s.max}</td><td>${esc(s.comment)}</td></tr>`).join("")}
+  </tbody></table></div>
+  ${rqh}${r.typos?tyh:""}
+  <p style="margin:14px 0 0">${esc(r.summary)}</p>
+  <p class="subh">良い点</p><ul class="ulist">${r.strengths.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+  <p class="subh">改善点</p><ul class="ulist">${r.improvements.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
+  <p class="subh">次の1題で試すこと</p><p style="margin:4px 0 0;color:var(--ink-2)">${esc(r.next)}</p>`;
+}
+function renderThumbs(){
+  document.getElementById("gThumbs").innerHTML=state.photos.map((p,i)=>`<figure><img src="${p.url}" alt="答案 ${i+1}枚目"><figcaption><span>${i+1}</span><button data-rmphoto="${i}">外す</button></figcaption></figure>`).join("");
+}
+function renderGrade(){
+  document.getElementById("aiOff").hidden=!!sample;
+  document.querySelectorAll(".btn.ai").forEach(b=>b.disabled=!sample);
+  document.getElementById("gCount").textContent=charCount(document.getElementById("gText").value)+"字（空白・改行を除く）";
+  const ex=usedExamples();
+  document.getElementById("gUsing").textContent=`採点に使う観点：${state.rubric.criteria.map(c=>c.name).join("・")}（${rubricMax()}点満点）／採点例：${ex.length}件`;
+  const cur=state.current;
+  document.getElementById("gResultPanel").hidden=!cur;
+  if(cur)document.getElementById("gResult").innerHTML=resultHTML(cur);
+  const hist=[...state.grades].sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+  document.getElementById("gHist").innerHTML=hist.length?hist.map(g=>{
+    const d=parse(g.date);let h=`<tr class="click" data-gtoggle="${g.id}"><td class="num">${md(d)}（${DOW[d.getDay()]}）</td><td>${esc(g.source||"（未記入）")}</td><td>${esc(g.type)}</td><td class="num">${g.result.total} / ${g.result.max}</td></tr>`;
+    if(state.openGrade===g.id)h+=`<tr class="detail"><td colspan="4">${g.question?`<p style="margin:0 0 8px"><b>設問</b>：${esc(g.question)}</p>`:""}${resultHTML(g)}
+      <p class="subh">答案</p><div class="memo">${esc(g.answer)}</div>
+      <div class="actions"><button class="btn" data-gshow="${g.id}">この結果を上に表示</button><button class="btn ghost" data-gdel="${g.id}">削除</button></div></td></tr>`;
+    return h}).join(""):`<tr><td colspan="4" class="empty">まだ採点結果がありません。</td></tr>`;
+}
+/* ルーブリック */
+function renderRubric(){
+  if(!state.rubricDraft)state.rubricDraft=JSON.parse(JSON.stringify(state.rubric));
+  const d=state.rubricDraft;
+  document.getElementById("rBody").innerHTML=d.criteria.map((c,i)=>`<tr>
+    <td><input type="text" data-r="${i}" data-k="name" value="${esc(c.name)}" aria-label="観点名"></td>
+    <td><input type="number" min="0" data-r="${i}" data-k="points" value="${esc(c.points)}" aria-label="配点"></td>
+    <td><textarea data-r="${i}" data-k="desc" aria-label="基準">${esc(c.desc)}</textarea></td>
+    <td><button class="btn ghost" data-rdel="${i}" type="button">削除</button></td></tr>`).join("");
+  document.getElementById("rPolicy").value=d.policy||"";
+  rSum();
+  renderExScores();
+  const list=[...state.examples].sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+  const used=new Set(usedExamples().map(x=>x.id));
+  document.getElementById("exBody").innerHTML=list.length?list.map(x=>`<tr>
+    <td>${esc((x.question||"（設問なし）").slice(0,40))}${(x.question||"").length>40?"…":""}</td><td>${esc(x.by)}</td>
+    <td class="num">${exTotal(x)} / ${rubricMax()}</td>
+    <td><button class="pill" type="button" data-exuse="${x.id}" aria-pressed="${!!x.use}">${x.use?(used.has(x.id)?"参照中":"オン（6件目以降）"):"オフ"}</button></td>
+    <td style="white-space:nowrap"><button class="btn" data-exedit="${x.id}">編集</button> <button class="btn ghost" data-exdel="${x.id}">削除</button></td></tr>`).join("")
+    :`<tr><td colspan="5" class="empty">まだ採点例がありません。添削を受けた答案や模範解答を登録すると、点数の目線が揃います。</td></tr>`;
+}
+function rSum(){const s=state.rubricDraft.criteria.reduce((a,c)=>a+(Number(c.points)||0),0);document.getElementById("rSum").textContent=`合計 ${s} 点`}
+function renderExScores(){
+  const ex=state.editingEx?state.examples.find(x=>x.id===state.editingEx):null;
+  const keep={};document.querySelectorAll("#exScores input").forEach(i=>keep[i.dataset.n]=i.value);
+  document.getElementById("exScores").innerHTML=state.rubric.criteria.map(c=>{
+    const v=keep[c.name]??(ex&&ex.scores?ex.scores[c.name]:"")??"";
+    return `<label>${esc(c.name)}（/${c.points}）<input type="number" min="0" max="${c.points}" data-n="${esc(c.name)}" value="${esc(v)}"></label>`}).join("");
+}
+function resetEx(){
+  state.editingEx=null;state.exUse=true;
+  ["exQ","exA","exComment"].forEach(id=>document.getElementById(id).value="");
+  document.getElementById("exFiles").value="";document.getElementById("exBy").selectedIndex=0;
+  document.getElementById("exUse").setAttribute("aria-pressed","true");document.getElementById("exUse").textContent="使う";
+  document.getElementById("exScores").innerHTML="";renderExScores();
+  document.getElementById("exTitle").textContent="採点例を追加";document.getElementById("exSave").textContent="採点例を保存";
+  document.getElementById("exCancel").hidden=true;document.getElementById("exStatus").textContent="";
+}
+function fillEx(x,isNew){
+  state.editingEx=isNew?null:x.id;state.exUse=x.use!==false;
+  document.getElementById("exQ").value=x.question||"";document.getElementById("exA").value=x.answer||"";
+  document.getElementById("exComment").value=x.comment||"";document.getElementById("exBy").value=x.by||"予備校・添削者";
+  document.getElementById("exUse").setAttribute("aria-pressed",String(state.exUse));document.getElementById("exUse").textContent=state.exUse?"使う":"使わない";
+  document.getElementById("exScores").innerHTML="";
+  document.getElementById("exScores").innerHTML=state.rubric.criteria.map(c=>`<label>${esc(c.name)}（/${c.points}）<input type="number" min="0" max="${c.points}" data-n="${esc(c.name)}" value="${esc((x.scores||{})[c.name]??"")}"></label>`).join("");
+  document.getElementById("exTitle").textContent=isNew?"採点例を追加":"採点例を編集";
+  document.getElementById("exSave").textContent=isNew?"採点例を保存":"変更を保存";
+  document.getElementById("exCancel").hidden=false;
+}
+async function saveEx(){
+  const answer=document.getElementById("exA").value.trim();
+  if(!answer){toast("答案を入力してください");return}
+  const scores={};document.querySelectorAll("#exScores input").forEach(i=>{if(i.value!=="")scores[i.dataset.n]=Number(i.value)});
+  const old=state.editingEx?state.examples.find(x=>x.id===state.editingEx):null;
+  const x={id:state.editingEx||newId("e"),question:document.getElementById("exQ").value.trim(),answer,scores,
+    by:document.getElementById("exBy").value,comment:document.getElementById("exComment").value.trim(),use:state.exUse,
+    createdAt:old?old.createdAt:Date.now(),updatedAt:Date.now()};
+  if(await saveItem("examples",x)){toast(old?"変更を保存しました":"採点例を保存しました");resetEx();render()}
+}
+
+/* ---------- 時事コラム（チャットで毎朝更新・新しい号を先頭に追加） ---------- */
+const COLUMNS=[
+ {label:"2026年10月12日号",items:[
+  {title:"日銀、政策金利を1.25%に引き上げ",date:"2026年9月18日 金融政策決定会合",
+   body:"日銀は政策金利を1.0%程度から1.25%程度へ引き上げました。6月の利上げからわずか3カ月で、植田総裁の就任後では最も短い間隔です。原油高や円安で物価が目標の2%を上振れするリスクが高まったとして、今後も利上げを続ける方針を示しました。企業にとっては借入金利の上昇を通じて資本コストが上がり、投資の採算ラインが引き上げられることを意味します。",
+   link:"資本コスト経営（R5）、NPV・WACC、「金利のある世界」での成長投資と株主還元",
+   think:"金利が上がると、R5で問われた「資本コストを上回るROE目標」の設定はどう変わるべきか。",
+   src:[["共同通信（神奈川新聞）","https://www.kanaloco.jp/news/social/article-1305496.html"],["第一生命経済研究所","https://www.dlri.co.jp/files/macro/665928.pdf"]]},
+  {title:"豊田自動織機の非公開化TOBが成立",date:"2026年1〜3月 公開買付",
+   body:"トヨタ不動産が設立した会社が、グループの資本構造の見直しを目的に豊田自動織機の株式公開買付けを実施しました。買付価格は機関投資家との対話を経て当初の1株18,800円から20,600円に引き上げられ、応募が下限を上回って成立し、同社は上場廃止の手続きに入りました。東証の資本効率改善の要請などを背景に、企業価値向上を狙った買収や非公開化は増えています。",
+   link:"親子上場の解消、少数株主の保護、コングロマリット・ディスカウント、ガバナンス",
+   think:"グループ会社を非公開化することは、グループ全体の企業価値と少数株主にとって、それぞれ何を意味するか。",
+   src:[["M&A Navigator","https://ma-navigator.com/columns/tob"],["日経COMPASS","https://www.nikkei.com/compass/theme/138146"]]},
+  {title:"生成AI、「様子見」から組織的な活用へ",date:"2026年4月27日 東京商工リサーチ調査",
+   body:"東京商工リサーチの調査では、生成AIの活用方針を決めていない企業が37.5%となり、2025年8月の前回調査の50.9%から大きく減りました。大企業では会社として組織的に活用している割合が59.1%に達し、前回から15.8ポイント上がっています。社員が個人で勝手に使う段階から、会社の管理下で活用する段階へ移りつつあり、人員の配置転換を検討する企業も増えています。",
+   link:"生成AIが企業経営に与える影響（R6）、組織変革、人材の再配置、AIガバナンス",
+   think:"生成AIで浮いた人員を配置転換するとき、日本型雇用はそれを後押しするか、妨げるか。",
+   src:[["innovatopia（東京商工リサーチ調査の解説）","https://innovatopia.jp/ai/ai-news/99443/"]]}
+ ]},
+ {label:"2026年10月12日（初回）",items:[
+  {title:"コーポレートガバナンス・コード、5年ぶりの改訂",date:"2026年7月21日 確定・公表",
+   body:"金融庁と東証は、補充原則を廃止して「基本原則・原則・解釈指針」の三層に組み直した改訂版を確定させました。取締役会が成長の道筋を描き、経営資源の配分を株主に説明して検証し続けることや、有価証券報告書を株主総会の前に開示することが柱です。背景には、日本企業が現預金を厚く抱えたまま成長投資に回していないという問題意識があります。上場会社は2027年7月までに改訂コードに沿った報告書を提出する見通しです。",
+   link:"ガバナンスと成長性の因果（R7）、資本コスト経営（R5）、コングロマリット・ディスカウント",
+   think:"形だけのガバナンス対応と実質的な取り組みは、PBRなどの市場評価でどう見分けられるか。",
+   src:[["BUSINESS LAWYERS","https://www.businesslawyers.jp/articles/1560"],["EY Japan","https://www.ey.com/ja_jp/insights/climate-change-sustainability-services/revision-of-corporate-governance-code-july-2026"]]},
+  {title:"出社回帰は進むが、働き手の理想とはずれ",date:"2026年4月 Job総研調査",
+   body:"パーソルキャリアのJob総研によると、2026年度に勤務先で出社回帰があったという回答は約2割で、出社頻度は週5日が約半数を占めました。一方、理想の出社頻度は週1〜3日に分散しており、会社の方針と働き手の希望が食い違っています。出社が増える理由の最多は「会社の方針が変わった」でした。",
+   link:"日本企業における柔軟な働き方の実現（昨年度）、人材確保と生産性、組織文化",
+   think:"会社の出社方針と働き手の希望のずれは、人材の確保と定着にどんな影響を与えるか。",
+   src:[["Forbes JAPAN","https://forbesjapan.com/articles/detail/96192"],["DIME","https://dime.jp/genre/2106091/"]]},
+  {title:"春闘の賃上げ率5.01%、3年連続の5%台",date:"2026年7月3日 連合最終集計",
+   body:"連合の最終集計で、2026年春闘の賃上げ率は5.01%となり、3年連続で5%を超えました。中小組合は4.69%で比較可能な2013年以降で最も高い一方、5%には届かず、価格転嫁ができているかどうかで差が出ていると指摘されています。賃上げの継続は、原資となる「稼ぐ力」や人的資本への投資のあり方を問う段階に入っています。",
+   link:"人的資本経営、価格転嫁と取引関係、大企業と中小企業の格差",
+   think:"価格転嫁ができない中小企業が賃上げを続けるには、何が必要か。",
+   src:[["厚生労働省資料（連合集計）","https://www.mhlw.go.jp/content/11200000/001739491.pdf"],["共同通信（熊本日日新聞）","https://kumanichi.com/articles/2009784"]]}
+ ]}
+];
+function colItemHTML(c){
+  return `<article><h3>${esc(c.title)}</h3><p class="date">${esc(c.date)}</p><p>${esc(c.body)}</p>
+    <p class="link">小論文との接点：${esc(c.link)}</p><p class="think">考えてみよう：${esc(c.think)}</p>
+    <p class="src">出典：${c.src.map(s=>`<a href="${esc(s[1])}" target="_blank" rel="noopener">${esc(s[0])}</a>`).join("、")}</p></article>`;
+}
+const COL_PROMPT="コラム更新：https://claude.ai/artifact/U6kVGw2sfAwQsPodjA9cft のトップページにある時事コラムを更新してください。Web検索で確認した直近の経営関連の時事を3本選び、新しい号（本日の日付）としてCOLUMNSの先頭に追加し、前の号は過去のコラムに残したまま同じアーティファクトに再公開してください。各コラムには、自分の言葉での要約、小論文（神戸大MBA・関学）との接点、「考えてみよう」の問い、出典リンクを付け、既存の号と同じテーマは避けてください。予想問題用の確認済み時事（TOPICS）にも同じ3本を追加してください。";
+function renderColumns(){
+  document.getElementById("colUpd").href="https://claude.ai/new?q="+encodeURIComponent(COL_PROMPT);
+  const [cur,...past]=COLUMNS;
+  document.getElementById("colDate").textContent=cur.label;
+  document.getElementById("colBody").innerHTML=cur.items.map(colItemHTML).join("");
+  document.getElementById("colArc").innerHTML=past.length?past.map(ed=>`<div class="ed"><p class="edl">${esc(ed.label)}</p>${ed.items.map(colItemHTML).join("")}</div>`).join(""):'<p class="note">まだありません。</p>';
+}
+
+/* ---------- 予想問題 ---------- */
+const TREND=`神戸大学大学院経営学研究科 専門職学位課程（MBA）の過去の小論文の傾向：
+・1題で600字以内が基本。小問2つ（各250字程度）の年もある。
+・多くの年で資料が付く（新聞記事や調査レポートの抜粋、企業の取組資料と株価推移、相関表）。
+・テーマ領域：資本コスト経営と企業価値（ROE・ROIC・NPV等）、コーポレートガバナンスと成長性（PBRとガバナンススコアの相関、相関と因果、規模の交絡）、生成AIが企業経営に与える影響（事例への言及が条件）、コングロマリット・ディスカウントの精密な説明、出社回帰を踏まえた日本企業における柔軟な働き方の実現。
+・問題の形式：What（概念の精密な説明）、Why（因果関係の経営学的論拠）、図表データの解釈と見解、意見問題（影響の評価）、How（どう実現するか）。「日本企業」などの範囲限定や事例言及の条件が付く。`;
+const TOPICS=[
+ "コーポレートガバナンス・コードの2026年改訂（2026年7月21日、金融庁・東証が確定）：補充原則を廃止し基本原則・原則・解釈指針の三層構造へ。取締役会による成長の道筋の構築と経営資源配分の株主への説明、独立社外取締役の質と数、取締役会事務局の機能強化、有価証券報告書の株主総会前開示が柱。上場会社は2027年7月までに対応した報告書を提出。出典：BUSINESS LAWYERS、EY Japan",
+ "出社回帰（Job総研「2026年 出社に関する実態調査」、2026年4月）：2026年度に出社回帰があったとの回答は約2割、出社頻度は週5日が約半数。理想の出社頻度は週1〜3日に分散し、会社方針と働き手の希望にずれ。出典：Forbes JAPAN",
+ "2026年春闘（連合最終集計、2026年7月3日公表）：賃上げ率5.01%で3年連続5%台。中小は4.69%で2013年以降最高だが5%に届かず、価格転嫁の可否で差。出典：連合／厚生労働省資料",
+ "日銀の追加利上げ（2026年9月18日）：政策金利を1.0%から1.25%へ。6月から3カ月で、植田総裁就任後最短の間隔。物価上振れリスクを理由に利上げ継続の方針。出典：共同通信",
+ "豊田自動織機の非公開化TOB（2026年1〜3月）：トヨタ不動産が設立した会社が実施。機関投資家との対話を経て買付価格を18,800円から20,600円に引き上げ、成立して上場廃止へ。出典：M&A Navigator",
+ "生成AIの組織的活用（東京商工リサーチ、2026年4月27日公表）：方針未定の企業は37.5%（前回2025年8月は50.9%）、大企業の組織的活用は59.1%。配置転換を検討する企業も増加。出典：東京商工リサーチ調査",
+ "AIエージェント：2026年3月のAI事業者ガイドライン第1.2版で、複数のシステムと連携し自律的に行動して業務の効率化に資するものとして公的な定義が追加された。企業のAI活用は試行から本格実装の段階へ。出典：経済産業省・総務省 AI事業者ガイドライン"
+];
+const P_FORMS=["What（概念を精密に説明させる）","Why（因果関係の経営学的論拠を問う）","How（日本企業でどう実現・解決するかを問う）","意見問題（影響や施策を評価させる）","図表・データの解釈と見解（架空の相関表や推移データ付き）","What＋Why（取組の内容と必要性を問う、企業資料付き）"];
+const P_AREAS=["財務・企業価値（資本コスト、PBR、ROIC、M&A、株主還元）","コーポレートガバナンス（取締役会、社外取締役、資本配分、開示）","組織・人事（働き方、人的資本、賃金、エンゲージメント）","経営戦略（事業ポートフォリオ、多角化、競争優位）","テクノロジーと経営（生成AI、AIエージェント、DX）","サステナビリティと企業価値（ESG、非財務資本、ステークホルダー）"];
+function pickSpec(date,k){const n=Math.abs(Math.round((parse(date)-parse("2026-10-12"))/864e5));const i=2*n+k;return {form:P_FORMS[i%6],area:P_AREAS[(i+Math.floor(i/6))%6]}}
+function predOf(date){return state.preds.find(p=>p.date===date)}
+function typeFor(it){const f=it.form||"";if(f.includes("図表"))return "図表・データ分析型";if(it.material)return "課題文読解型";return "テーマ型（自由論述）"}
+let pctl=null;
+async function genOne(date,k,avoid){
+  const spec=pickSpec(date,k);
+  const prompt=`あなたは日本のMBA入試（神戸大学大学院経営学研究科 専門職学位課程）の小論文対策講師です。過去問の傾向に沿った予想問題を1題作成し、解答の作り方・解説・模範解答・関連時事情報を付けてください。
+
+# 過去問の傾向
+${TREND}
+
+# 2026年の確認済み時事トピック
+${TOPICS.map(t=>"- "+t).join("\n")}
+
+# 作成する問題の条件
+・テーマ領域：${spec.area}
+・問題の形式：${spec.form}
+・字数：600字以内（小問2つにする場合は各250〜300字程度とし、設問文に明記）
+・過去問の再出題ではなく、傾向に沿った新しい問題にする。2026年の経営環境を踏まえる
+・資料を付ける場合、実在の統計を正確に引用できないときは架空の数値・事例とし、資料の末尾に「※本問用に作成した架空データ」と明記する
+・次のタイトルの問題と内容を重複させない：${avoid||"なし"}
+
+# 解答の作り方
+「主題（出題者の目的）→問題（解決すべき論点）→問題の形式→設問の要求事項の列挙→構成→各段落で書く内容」の順に、受験者が真似できる具体的な手順で示す。
+
+# 解説
+使うべき経営学の理論・概念とその正しい使い方、典型的な失点（論点のずれ、概念の誤用、根拠不足）を示す。
+
+# 模範解答
+字数制限内（600字以内なら550〜600字）。結論先行で主張と根拠を明示し、理論・概念を正確に用い、誤字や不自然な日本語のない文章にする。
+
+# 関連時事情報
+確認済み時事トピックから関連するものを選ぶか、広く知られた確実な事実のみを使う。不確かな日付や数値は書かない。2〜3件。
+
+# 出力
+JSONのみで次の形で返す：
+{"title":"問題の短いタイトル","area":"テーマ領域","form":"問題の形式","limit":600,"material":"資料本文（なければ空文字）","question":"設問文","howto":["手順1","手順2"],"outline":"段落構成案（段落ごとの役割と目安字数）","explanation":"解説","theories":["理論・概念名"],"model_answer":"模範解答","news":[{"title":"見出し","summary":"2〜3文の要約と小論文での使い方","source":"出典名（確認済みトピック以外は『一般知識』）"}]}`;
+  const r=await sample.json(prompt,{signal:pctl.signal,cache:false});
+  if(!r||!r.question)throw {code:"invalid_json"};
+  const arr=v=>Array.isArray(v)?v:[];
+  return {title:String(r.title||"予想問題"),area:String(r.area||spec.area),form:String(r.form||spec.form),limit:Number(r.limit)||600,
+    material:String(r.material||""),question:String(r.question),howto:arr(r.howto).map(String),outline:String(r.outline||""),
+    explanation:String(r.explanation||""),theories:arr(r.theories).map(String),model_answer:String(r.model_answer||""),
+    news:arr(r.news).map(n=>({title:String(n.title||""),summary:String(n.summary||""),source:String(n.source||"")}))};
+}
+async function generatePred(date){
+  if(!sample){toast("予想問題の作成はclaude.aiで開いたときに使えます");return}
+  const st=document.getElementById("pStatus");
+  document.querySelectorAll("#pGen,#pRegen").forEach(b=>b.disabled=true);
+  pctl=new AbortController();document.getElementById("pStop").hidden=false;
+  document.getElementById("pEmpty").hidden=false;
+  const avoid=[...state.preds].sort((a,b)=>(b.createdAt||0)-(a.createdAt||0)).slice(0,10).flatMap(p=>p.items.map(i=>i.title)).join("、");
+  try{
+    const items=[];
+    for(let k=0;k<2;k++){
+      st.textContent=`第${k+1}問を作成中…（1題につき1〜2分かかります）`;
+      items.push(await genOne(date,k,avoid+(items.length?"、"+items[0].title:"")));
+    }
+    if(await saveItem("preds",{id:date,date,items,createdAt:Date.now()})){st.textContent="";toast("予想問題を2題作成しました")}
+    render();
+  }catch(e){st.textContent=errMsg(e)}
+  finally{document.querySelectorAll("#pGen,#pRegen").forEach(b=>b.disabled=!sample);document.getElementById("pStop").hidden=true}
+}
+function predItemHTML(date,it,k){
+  const mc=charCount(it.model_answer);
+  return `<div class="panel pq">
+    <h2>第${k+1}問　${esc(it.title)}</h2>
+    <div class="meta"><span class="tag">${esc(it.area)}</span><span class="tag">${esc(it.form)}</span><span class="tag">${it.limit}字以内</span></div>
+    ${it.material?`<p class="subh" style="margin-top:0">資料</p><div class="mat">${esc(it.material)}</div>`:""}
+    <p class="subh" style="margin-top:0">設問</p><div class="qbox">${esc(it.question)}</div>
+    <div class="actions" style="margin-bottom:12px">
+      <button class="btn primary" data-psolve="${date}|${k}" type="button">AI採点で解く</button>
+      <button class="btn" data-plog="${date}|${k}" type="button">1日ログに記録</button>
+    </div>
+    <details><summary>解答の作り方</summary><div><ol class="ulist">${it.howto.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>${it.outline?`<p class="subh">段落構成案</p><p style="white-space:pre-wrap;margin:4px 0 0">${esc(it.outline)}</p>`:""}</div></details>
+    <details><summary>解説</summary><div><p style="white-space:pre-wrap;margin:0">${esc(it.explanation)}</p>${it.theories.length?`<p class="subh">使える理論・概念</p><div class="meta" style="margin-top:6px">${it.theories.map(t=>`<span class="tag done">${esc(t)}</span>`).join("")}</div>`:""}</div></details>
+    <details><summary>模範解答（${mc}字）</summary><div><p class="ans" style="margin:0">${esc(it.model_answer)}</p></div></details>
+    <details><summary>関連時事情報</summary><div>${it.news.map(n=>`<p style="margin:0 0 4px;color:var(--ink);font-weight:700">${esc(n.title)}</p><p style="margin:0 0 4px">${esc(n.summary)}</p><p class="note" style="margin:0 0 12px">出典：${esc(n.source)}</p>`).join("")||'<p class="note">なし</p>'}</div></details>
+  </div>`;
+}
+function renderPred(){
+  const d=parse(state.predDate);
+  document.getElementById("pRange").textContent=`${d.getFullYear()}年 ${md(d)}（${DOW[d.getDay()]}）`;
+  document.getElementById("pOff").hidden=!!sample;
+  const p=predOf(state.predDate);
+  const busy=!document.getElementById("pStop").hidden;
+  document.getElementById("pEmpty").hidden=!!p&&!busy;
+  document.getElementById("pFoot").hidden=!p;
+  document.getElementById("pItems").innerHTML=p?p.items.map((it,k)=>predItemHTML(p.date,it,k)).join(""):"";
+  document.querySelectorAll("#pGen,#pRegen").forEach(b=>b.disabled=!sample||busy);
+}
+function predItem(ref){const [date,k]=ref.split("|");const p=predOf(date);return p?{date,it:p.items[+k]}:null}
+
+/* ---------- イベント ---------- */
+document.addEventListener("click",e=>{
+  const tab=e.target.closest(".tabs button");if(tab){show(tab.dataset.view);return}
+  const pill=e.target.closest(".pill[data-key]");
+  if(pill){const k=pill.dataset.key,f=pill.dataset.f;const c={a:false,r:false,...(state.checks[k]||{})};c[f]=!c[f];
+    if(!c.a&&!c.r)delete state.checks[k];else state.checks[k]=c;persistTracker();render();return}
+  const chip=e.target.closest("[data-chip]");if(chip){chip.setAttribute("aria-pressed",chip.getAttribute("aria-pressed")!=="true");return}
+  const open=e.target.closest("[data-open]");if(open){state.openLog=open.dataset.open;show("list");return}
+  const tg=e.target.closest("[data-toggle]");if(tg){state.openLog=state.openLog===tg.dataset.toggle?null:tg.dataset.toggle;renderList();return}
+  const ed=e.target.closest("[data-edit]");if(ed){editLog(ed.dataset.edit);return}
+  const del=e.target.closest("[data-del]");if(del){if(confirm("このログを削除しますか？"))removeLog(del.dataset.del);return}
+  const rp=e.target.closest("[data-rmphoto]");if(rp){const i=+rp.dataset.rmphoto;URL.revokeObjectURL(state.photos[i].url);state.photos.splice(i,1);renderThumbs();return}
+  const gt=e.target.closest("[data-gtoggle]");if(gt){state.openGrade=state.openGrade===gt.dataset.gtoggle?null:gt.dataset.gtoggle;renderGrade();return}
+  const gs=e.target.closest("[data-gshow]");if(gs){state.current=state.grades.find(g=>g.id===gs.dataset.gshow)||null;renderGrade();document.getElementById("gResultPanel").scrollIntoView({behavior:"smooth"});return}
+  const gd=e.target.closest("[data-gdel]");if(gd){if(confirm("この採点結果を削除しますか？")){if(state.current&&state.current.id===gd.dataset.gdel)state.current=null;removeItem("grades",gd.dataset.gdel)}return}
+  const rd=e.target.closest("[data-rdel]");if(rd){state.rubricDraft.criteria.splice(+rd.dataset.rdel,1);renderRubric();return}
+  const eu=e.target.closest("[data-exuse]");if(eu){const x=state.examples.find(v=>v.id===eu.dataset.exuse);if(x){saveItem("examples",{...x,use:!x.use}).then(render)}return}
+  const ee=e.target.closest("[data-exedit]");if(ee){const x=state.examples.find(v=>v.id===ee.dataset.exedit);if(x){fillEx(x,false);document.getElementById("exTitle").scrollIntoView({behavior:"smooth"})}return}
+  const ps=e.target.closest("[data-psolve]");if(ps){const r=predItem(ps.dataset.psolve);if(!r)return;const it=r.it;
+    document.getElementById("gQ").value=(it.material?"【資料】\n"+it.material+"\n\n":"")+"【設問】\n"+it.question;
+    document.getElementById("gLimit").value=String(it.limit);document.getElementById("gSource").value="予想問題 "+r.date+" "+it.title;
+    document.getElementById("gType").value=typeFor(it);document.getElementById("gText").value="";state.current=null;
+    show("grade");toast("設問をAI採点ページに入れました。手書きで解いてから写真を読み取ってください");return}
+  const pl=e.target.closest("[data-plog]");if(pl){const r=predItem(pl.dataset.plog);if(!r)return;resetForm();
+    document.getElementById("fDate").value=ymd(new Date());document.getElementById("fSource").value="予想問題 "+r.date+" "+r.it.title;
+    document.getElementById("fType").value=typeFor(r.it);show("log");return}
+  const ed2=e.target.closest("[data-exdel]");if(ed2){if(confirm("この採点例を削除しますか？"))removeItem("examples",ed2.dataset.exdel);return}
+});
+document.getElementById("gFiles").addEventListener("change",e=>{
+  for(const f of e.target.files)state.photos.push({file:f,url:URL.createObjectURL(f)});e.target.value="";renderThumbs()});
+document.getElementById("gRead").onclick=async()=>{
+  const t=await transcribe(state.photos.map(p=>p.file),document.getElementById("gStatus"));
+  if(t!==null){document.getElementById("gText").value=t;renderGrade()}};
+document.getElementById("gStop").onclick=()=>ctl&&ctl.abort();
+document.getElementById("gText").addEventListener("input",()=>{document.getElementById("gCount").textContent=charCount(document.getElementById("gText").value)+"字（空白・改行を除く）"});
+document.getElementById("gGrade").onclick=grade;
+document.getElementById("gToLog").onclick=()=>{
+  const g=state.current;if(!g)return;resetForm();
+  document.getElementById("fDate").value=g.date;document.getElementById("fType").value=g.type;document.getElementById("fSource").value=g.source;
+  document.getElementById("fMemo").value=`AI採点 ${g.result.total}/${g.result.max}点\n${g.result.summary}\n改善点：\n${g.result.improvements.map(x=>"・"+x).join("\n")}\n次回：${g.result.next}`;
+  show("log");toast("採点結果を1日ログに転記しました。内容を確認して保存してください")};
+document.getElementById("gToEx").onclick=()=>{
+  const g=state.current;if(!g)return;
+  const scores={};g.result.scores.forEach(s=>scores[s.name]=s.score);
+  show("rubric");fillEx({question:g.question,answer:g.answer,scores,by:"AI採点を修正",comment:g.result.summary,use:true},true);
+  document.getElementById("exTitle").scrollIntoView({behavior:"smooth"});toast("点数と講評を修正してから保存してください")};
+document.getElementById("rBody").addEventListener("input",e=>{const t=e.target;if(t.dataset.r==null)return;
+  const c=state.rubricDraft.criteria[+t.dataset.r];c[t.dataset.k]=t.dataset.k==="points"?Number(t.value):t.value;if(t.dataset.k==="points")rSum()});
+document.getElementById("rPolicy").addEventListener("input",e=>{state.rubricDraft.policy=e.target.value});
+document.getElementById("rReset").onclick=()=>{if(!confirm("観点と配点を推奨の内容に置き換えます（保存するまで反映されません）。よろしいですか？"))return;state.rubricDraft.criteria=JSON.parse(JSON.stringify(DEFAULT_CRITERIA));renderRubric();toast("推奨の観点を読み込みました。確認して保存してください")};
+document.getElementById("rAdd").onclick=()=>{state.rubricDraft.criteria.push({id:newId("c"),name:"",points:10,desc:""});renderRubric()};
+document.getElementById("rSave").onclick=async()=>{
+  const d=state.rubricDraft;d.criteria=d.criteria.filter(c=>c.name.trim());
+  if(!d.criteria.length){toast("観点を1つ以上入力してください");return}
+  const names=d.criteria.map(c=>c.name.trim());if(new Set(names).size!==names.length){toast("観点名が重複しています");return}
+  d.criteria.forEach(c=>c.name=c.name.trim());
+  state.rubric=JSON.parse(JSON.stringify(d));state.rubricDraft=null;
+  if(await persistRubric())toast("ルーブリックを保存しました");document.getElementById("exScores").innerHTML="";render()};
+document.getElementById("exUse").onclick=()=>{state.exUse=!state.exUse;const b=document.getElementById("exUse");b.setAttribute("aria-pressed",String(state.exUse));b.textContent=state.exUse?"使う":"使わない"};
+document.getElementById("exRead").onclick=async()=>{
+  const t=await transcribe([...document.getElementById("exFiles").files],document.getElementById("exStatus"));
+  if(t!==null)document.getElementById("exA").value=t};
+document.getElementById("exSave").onclick=saveEx;
+document.getElementById("pPrev").onclick=()=>{state.predDate=ymd(addDays(parse(state.predDate),-1));document.getElementById("pStatus").textContent="";renderPred()};
+document.getElementById("pNext").onclick=()=>{state.predDate=ymd(addDays(parse(state.predDate),1));document.getElementById("pStatus").textContent="";renderPred()};
+document.getElementById("pNow").onclick=()=>{state.predDate=ymd(new Date());renderPred()};
+document.getElementById("pGen").onclick=()=>generatePred(state.predDate);
+document.getElementById("pRegen").onclick=()=>{if(confirm("この日の2題を新しく作り直します。今の問題は上書きされます。よろしいですか？"))generatePred(state.predDate)};
+document.getElementById("pStop").onclick=()=>pctl&&pctl.abort();
+document.getElementById("exCancel").onclick=resetEx;
+document.getElementById("wPrev").onclick=()=>{state.weekStart=addDays(state.weekStart,-7);renderWeek()};
+document.getElementById("wNext").onclick=()=>{state.weekStart=addDays(state.weekStart,7);renderWeek()};
+document.getElementById("wNow").onclick=()=>{state.weekStart=monday(new Date());renderWeek()};
+document.getElementById("fSave").onclick=submitLog;
+document.getElementById("fCancel").onclick=resetForm;
+["qText","qType","qStatus"].forEach(id=>document.getElementById(id).addEventListener("input",renderList));
+document.getElementById("tStart").onclick=tToggle;
+document.getElementById("tSkip").onclick=()=>{if(T.i>=STEPS.length)return;markStep(T.i);T.i++;
+  if(T.i>=STEPS.length){tStop();T.left=0}else{T.left=STEPS[T.i][1]*60;if(T.running)T.endAt=Date.now()+T.left*1000}tRender()};
+document.getElementById("tReset").onclick=()=>{tStop();T.i=0;T.left=STEPS[0][1]*60;tRender()};
+
+/* ---------- 初期化 ---------- */
+fillSelect(document.getElementById("fType"),TYPES);
+fillSelect(document.getElementById("fStatus"),STATUSES);
+fillSelect(document.getElementById("qType"),TYPES,"すべての種類");
+fillSelect(document.getElementById("gType"),TYPES);
+fillSelect(document.getElementById("qStatus"),STATUSES,"すべての達成状況");
+chipGroup(document.getElementById("fSteps"),STEPS,"step");
+chipGroup(document.getElementById("fReview"),REVIEW.map(r=>[r[0]]),"rev");
+document.getElementById("tBars").innerHTML=STEPS.map(s=>`<div style="flex:${s[1]}"><span></span></div>`).join("");
+document.getElementById("tList").innerHTML=STEPS.map(s=>`<li><span>${s[0]}</span><span>${s[1]}分</span></li>`).join("");
+document.getElementById("gReview").innerHTML=REVIEW.map(r=>`<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join("");
+document.getElementById("gSteps").innerHTML=STEPS.map(s=>`<tr><td>${s[0]}</td><td class="num">${s[1]}分</td></tr>`).join("")+`<tr><td><b>合計</b></td><td class="num">60分</td></tr>`;
+loadLocal();resetForm();resetEx();tRender();renderColumns();render();
+(async()=>{
+  if(!window.claude||typeof window.claude.use!=="function")return;
+  try{const s=await window.claude.use("sample");if(!s)return;sample=s;
+    const lim=await s.limits().catch(()=>null);canImages=!!(lim&&lim.images);imgLimits=lim&&lim.images;render()}catch(e){}
+})();
+
+/* クラウド保存（claude.ai上で開いたとき）に切り替え */
+(async()=>{
+  if(!window.claude||typeof window.claude.use!=="function")return;
+  try{
+    const [d,u]=await Promise.all([window.claude.use("db"),window.claude.use("user")]);
+    if(!d||!u)return;
+    const id=await u.id();if(!id)return;
+    db=d;uid=id;
+    trackerRef=db.doc("data/users/"+uid+"/tracker");
+    const meta=db.doc("data/users/"+uid+"/meta");
+    logsCol=meta.collection("logs");cols.logs=logsCol;cols.examples=meta.collection("examples");cols.grades=meta.collection("grades");cols.preds=meta.collection("preds");
+    rubricRef=db.doc("data/users/"+uid+"/rubric");
+    const snap=await trackerRef.get();
+    const localChecks=state.checks,localLogs=state.logs;
+    mode="cloud";
+    const sync=document.getElementById("sync");sync.classList.add("on");sync.querySelector("span").textContent="クラウドに保存中";
+    if(!snap.exists&&Object.keys(localChecks).length){await persistTracker()}
+    else if(snap.exists){state.checks=(snap.data().checks)||{}}
+    const localEx=state.examples,localGr=state.grades,localRub=state.rubric,localPr=state.preds;
+    for(const [name,arr] of [["logs",localLogs],["examples",localEx],["grades",localGr],["preds",localPr]]){
+      const ls=await cols[name].limit(1).get();
+      if(ls.empty&&arr.length){for(const l of arr){try{await cols[name].doc(l.id).set(l)}catch(e){}}}
+    }
+    const rs=await rubricRef.get();
+    if(rs.exists){const d=rs.data();if(d.criteria&&d.criteria.length)state.rubric={criteria:d.criteria,policy:d.policy||""}}
+    else if(localRub!==null){await persistRubric()}
+    trackerRef.onSnapshot(s=>{if(writing||dirty||s.metadata.hasPendingWrites||!s.exists)return;state.checks=s.data().checks||{};saveLocal();render()},()=>{});
+    logsCol.orderBy("date","desc").limit(1000).onSnapshot(s=>{state.logs=s.docs.map(x=>x.data());saveLocal();render()},()=>{});
+    cols.examples.limit(500).onSnapshot(s=>{state.examples=s.docs.map(x=>x.data());saveLocal();render()},()=>{});
+    cols.grades.limit(1000).onSnapshot(s=>{state.grades=s.docs.map(x=>x.data());saveLocal();render()},()=>{});
+    cols.preds.limit(500).onSnapshot(s=>{state.preds=s.docs.map(x=>x.data());saveLocal();render()},()=>{});
+    rubricRef.onSnapshot(s=>{if(!s.exists||s.metadata.hasPendingWrites)return;const d=s.data();if(d.criteria&&d.criteria.length){state.rubric={criteria:d.criteria,policy:d.policy||""};saveLocal();if(!state.rubricDraft||state.view!=="rubric")render()}},()=>{});
+    render();
+  }catch(e){mode="local"}
+})();
+})();
+</script>
+</body>
+</html>
